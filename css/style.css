@@ -1,0 +1,410 @@
+/* Font Import */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+/* Variable declaration in CSS (Like SASS) */
+/* These are custom properties( or called root scope), basically variables */
+:root {
+  --primary-color: #f60f20;
+  --secondary-color: #1b206e;
+}
+/* To use the variables, var(--primary-color) */
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  color: #111;
+}
+
+h1 {
+  font-size: 1.9 rem;
+  font-weight: 500;
+}
+p {
+  margin: 20px 0 10px 0;
+  font-size: 1.1rem;
+}
+
+/* homepage page - Styles */
+
+/* Utilities */
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  /* Why inline-block? We need to add margin for the button, but as a default <a> tag is displayed as inline. 
+       (Height and width are ignored, margin and padding push the elements horizontally but  not vertically)  */
+  background: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 30px;
+  margin: 20px 0;
+  transition: transform 1s;
+  border: 0;
+}
+
+.btn:hover {
+  transform: scale(0.98);
+}
+/* Logo */
+.logo {
+  position: absolute;
+  top: 30px;
+  left: 100px;
+  font-size: 2rem;
+  font-weight: 700;
+  z-index: 20;
+}
+
+/* Toggler Btn */
+.toggle {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: var(--primary-color) url(../images/menu.png);
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 20;
+  cursor: pointer;
+}
+
+/* Toggler Btn  Active state*/
+.toggle.active {
+  background: var(--primary-color) url(../images/close.png);
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Navigation */
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: left 1.5s ease;
+}
+
+.navigation.active {
+  left: 0;
+}
+
+.navigation ul {
+  position: relative;
+  list-style: none;
+}
+
+.navigation ul li {
+  position: relative;
+  text-align: center;
+}
+
+.navigation ul li a {
+  font-size: 2.2rem;
+  text-decoration: none;
+  color: #111;
+  font-weight: 300;
+  transition: all 0.3s;
+}
+
+.navigation ul li a:hover {
+  color: var(--primary-color);
+}
+
+/* Social Icons */
+.navigation .social-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation .social-bar a {
+  display: inline-block;
+  transform: scale(0.5);
+}
+
+.navigation .email-icon {
+  position: absolute;
+  bottom: 20px;
+  transform: scale(0.5);
+}
+
+/* Common styles for all the sections*/
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding: 100px;
+  margin-top: 60px;
+}
+
+section.main {
+  /* Specific styles for Homepage */
+  flex-direction: row;
+  margin-top: 0;
+}
+
+section.main img.home-img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 110%;
+}
+
+section.main .home-content {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+}
+
+/* services page - Styles */
+.services {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.services .service {
+  padding: 20px;
+  transition: all 0.1s;
+}
+
+.services .service:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.services .service h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 20px;
+  color: var(--secondary-color);
+}
+
+.services .service .icon > img {
+  max-width: 100px;
+  /* transform: scale(0.8); */
+}
+
+/* work page - Styles */
+
+.portfolio {
+  /* We can also convert this to CSS Grid */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.portfolio .item {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 5px;
+}
+
+.portfolio .item img {
+  width: 100%; /*to cover 300px width of the parent*/
+  height: 100%;
+}
+
+.portfolio .item .action {
+  position: absolute; /*with in tthe relative parent*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s;
+  cursor: pointer;
+}
+.portfolio .item .action a {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #fff;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+.portfolio .item:hover .action {
+  opacity: 1;
+}
+
+/* contact page - Styles */
+.contact {
+  position: relative;
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.contact-form {
+  position: relative;
+  /* background-color: #f9f9f9; */
+  width: calc(100% - 400px);
+  border-radius: 5px;
+  padding: 60px 40px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form form {
+  width: 100%;
+}
+
+.contact-form .row {
+  width: 100%;
+  display: flex;
+}
+
+.contact-form .row .input-50 {
+  width: 50%;
+  margin: 0 10px;
+}
+
+.contact-form .row .input-100 {
+  width: 100%;
+  margin: 0 10px;
+}
+
+.contact-form .row input,
+.contact-form .row textarea {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #111;
+  background: transparent;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 300;
+  resize: none; /*This applies to textarea*/
+}
+
+.contact-form .row textarea {
+  height: 150px;
+}
+
+.contact-form .row input[type="submit"] {
+  background-color: var(--secondary-color);
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  /* letter-spacing: 2px; */
+  border: 0;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.contact-info {
+  width: 350px;
+  /* background-color: #f9f9f9; */
+  padding: 60px 40px 20px;
+}
+
+.contact-info .info-box {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.contact-info .info-box .contact-icon {
+  margin-right: 40px;
+  width: 20px;
+}
+
+.contact-info .info-box .details h4 {
+  color: var(--secondary-color);
+}
+
+.contact-info .info-box .details p,
+.contact-info .info-box .details a {
+  color: #111;
+}
+
+/* Media Queries */
+
+@media (max-width: 1068px) {
+  section.main img.home-img {
+    display: none;
+  }
+  .logo {
+    top: 10px;
+    left: 40px;
+    font-size: 1.5rem;
+  }
+  /* section.main {
+    padding: 100px 40px;
+  } */
+  section {
+    padding: 100px 40px;
+  }
+  .navigation ul li a {
+    font-size: 2rem;
+  }
+
+  .services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contact {
+    flex-direction: column;
+  }
+  .contact-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .services {
+    grid-template-columns: 1fr;
+  }
+  .services .service {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  .contact-form {
+    width: 100%;
+    padding: 30px 30px 20px;
+  }
+  .contact-form .row {
+    flex-direction: column;
+  }
+  .contact-form .row .input-50,
+  .contact-form .row .input-100 {
+    width: 100%;
+    margin: 0;
+  }
+  .contact-info {
+    margin-top: 20px;
+    padding: 30px 30px 20px;
+    width: 100%;
+  }
+}
